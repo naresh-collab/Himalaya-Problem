@@ -1,0 +1,1281 @@
+
+<!-- saved from url=(0059)file:///Users/naresh/Desktop/pop_path_bucket_retention.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+*{box-sizing:border-box;}
+.sl{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin:2rem 0 .6rem;}
+.krow{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:8px;margin-bottom:1rem;}
+.kpi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.65rem .9rem;}
+.kl{font-size:10px;color:var(--color-text-secondary);margin-bottom:2px;}
+.kv{font-size:18px;font-weight:500;color:var(--color-text-primary);}
+.ks{font-size:10px;color:var(--color-text-tertiary);}
+table.t{width:100%;border-collapse:collapse;font-size:11.5px;}
+table.t th{text-align:left;font-size:10.5px;font-weight:500;color:var(--color-text-secondary);padding:4px 6px;border-bottom:1px solid var(--color-border-tertiary);white-space:nowrap;}
+table.t td{padding:4px 6px;border-bottom:.5px solid var(--color-border-tertiary);vertical-align:middle;}
+table.t tr:hover td{background:var(--color-background-secondary);}
+.b{display:inline-block;font-size:9.5px;font-weight:500;padding:1px 5px;border-radius:7px;margin:1px;}
+.bu{background:#E6F1FB;color:#0C447C;} .br{background:#EEEDFE;color:#3C3489;}
+.bp{background:#FAEEDA;color:#633806;} .bs{background:#EAF3DE;color:#27500A;}
+.bc{background:#FAECE7;color:#993C1D;}
+.nar{color:var(--color-text-secondary);font-size:10px;margin:0 1px;}
+/* Bucket pill colours */
+.bk0{background:#FCF0F0;color:#A32D2D;font-size:10px;font-weight:500;padding:1px 7px;border-radius:10px;}
+.bk1{background:#FEF5E5;color:#7A4A00;font-size:10px;font-weight:500;padding:1px 7px;border-radius:10px;}
+.bk2{background:#FEF9E3;color:#6B5800;font-size:10px;font-weight:500;padding:1px 7px;border-radius:10px;}
+.bk3{background:#EDF6E9;color:#2A5C0F;font-size:10px;font-weight:500;padding:1px 7px;border-radius:10px;}
+.bk4{background:#E3F3EE;color:#0E5940;font-size:10px;font-weight:500;padding:1px 7px;border-radius:10px;}
+.bk5{background:#E3EDF8;color:#0C447C;font-size:10px;font-weight:500;padding:1px 7px;border-radius:10px;}
+.bkp{background:#EDE3F8;color:#3C3489;font-size:10px;font-weight:500;padding:1px 7px;border-radius:10px;}
+.insight{border-left:3px solid var(--color-border-info);background:var(--color-background-info);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:.65rem .9rem;margin:.4rem 0;font-size:12px;}
+.warn{border-left-color:#EF9F27;background:#FEF9E3;}
+.good{border-left-color:#1D9E75;background:#E3F6EF;}
+.act-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.acard{border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:.85rem 1rem;}
+.ahead{font-size:12px;font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.ai{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;}
+.ali{font-size:11.5px;color:var(--color-text-primary);padding-left:.9rem;margin:.35rem 0;position:relative;}
+.ali::before{content:"→";position:absolute;left:0;color:var(--color-text-tertiary);font-size:10px;}
+.asub{font-size:10.5px;color:var(--color-text-secondary);margin:.2rem 0 .35rem .9rem;}
+.divider{border:none;border-top:.5px solid var(--color-border-tertiary);margin:1.5rem 0;}
+.seg-note{font-size:10px;color:var(--color-text-secondary);font-style:italic;margin:.3rem 0;}
+.path-filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;}
+.pf-btn{font-size:10px;padding:3px 9px;border-radius:12px;border:.5px solid var(--color-border-tertiary);cursor:pointer;background:var(--color-background-secondary);color:var(--color-text-primary);}
+.pf-btn.active{background:#185FA5;color:#fff;border-color:#185FA5;}
+@media(max-width:560px){.act-grid{grid-template-columns:1fr;}}
+</style>
+</head><body><div style="padding:0 0 2rem;">
+
+<p class="sl">March 2026 NTU — 22 paths × 6 UPI-txn buckets = 129 segments</p>
+<div class="krow">
+  <div class="kpi"><div class="kl">UPI-only, 1 txn ever</div><div class="kv">39,889</div><div class="ks">0% D30-60 — functionally churned</div></div>
+  <div class="kpi"><div class="kl">UPI-only, 6+ txns</div><div class="kv">33,134</div><div class="ks">41% D30-60 — prime cross-sell</div></div>
+  <div class="kpi"><div class="kl">RuPay same-session (bkt 0)</div><div class="kv">78.4%</div><div class="ks">of UPI→RuPay path</div></div>
+  <div class="kpi"><div class="kl">POPcard same-session (bkt 0)</div><div class="kv">81%</div><div class="ks">of UPI→POPcard path</div></div>
+  <div class="kpi"><div class="kl">RCBP @ 6+ UPI txns</div><div class="kv">69.9%</div><div class="ks">of UPI→RCBP, 89.4% D30-60</div></div>
+  <div class="kpi"><div class="kl">Bucket 6+ premium</div><div class="kv">+40pp</div><div class="ks">vs bucket 1 across all paths</div></div>
+</div>
+
+<p class="sl">key findings from the bucket data</p>
+<div class="insight warn"><b>39,889 UPI-only users (38.7%) made exactly 1 UPI txn and have 0% D30-60.</b> These are not dormant users — they are gone. Every re-engagement rupee spent here has near-zero ROI. Redirect budget to the 6+ bucket instead.</div>
+<div class="insight good"><b>33,134 UPI-only users with 6+ txns have 41% D30-60</b> — the highest retention of any UPI-only sub-segment by 3×. They're engaged but mono-service. A RuPay or Shop nudge to this cohort alone could unlock 18,000+ retained D30-60 users.</div>
+<div class="insight warn"><b>UPI → RuPay bucket 0 = 6,293 users (78.4%)</b> who adopted RuPay on the same session as first UPI, with 35.2% D30-60. Users who took even 1 UPI txn before RuPay (bucket 1) jump to 49.9% D30-60. <b>A post-transaction RuPay prompt doubles retention.</b></div>
+<div class="insight good"><b>UPI → RCBP is almost exclusively a power-user behavior:</b> 69.9% of RCBP adopters had 6+ UPI txns before their first RCBP. 89.4% D30-60 for that sub-segment. RCBP is the natural endpoint of high-frequency UPI users.</div>
+<div class="insight good"><b>Across every single path, bucket 6+ is the highest-retention sub-segment.</b> UPI txn frequency before next step is the strongest predictor of long-term retention — stronger than the path itself.</div>
+
+<p class="sl" style="margin-top:1rem;">UPI txn bucket distribution — filter by path</p>
+<div class="path-filter" id="pf"><button class="pf-btn active" data-p="ALL">All paths</button><button class="pf-btn" data-p="UPI">UPI</button><button class="pf-btn" data-p="UPI -&gt; Shop">UPI→Shop</button><button class="pf-btn" data-p="UPI -&gt; RuPay">UPI→RuPay</button><button class="pf-btn" data-p="UPI -&gt; POPcard">UPI→POPcard</button><button class="pf-btn" data-p="UPI -&gt; RuPay -&gt; Shop">UPI→RuPay→Shop</button><button class="pf-btn" data-p="UPI -&gt; RCBP">UPI→RCBP</button><button class="pf-btn" data-p="UPI -&gt; RuPay -&gt; RCBP">UPI→RuPay→RCBP</button><button class="pf-btn" data-p="UPI -&gt; POPcard -&gt; RCBP">UPI→POPcard→RCBP</button><button class="pf-btn" data-p="UPI -&gt; POPcard -&gt; Shop">UPI→POPcard→Shop</button><button class="pf-btn" data-p="UPI -&gt; Shop -&gt; RuPay">UPI→Shop→RuPay</button><button class="pf-btn" data-p="UPI -&gt; Shop -&gt; RCBP">UPI→Shop→RCBP</button><button class="pf-btn" data-p="UPI -&gt; RuPay -&gt; Shop -&gt; RCBP">UPI→RuPay→Shop→RCBP</button><button class="pf-btn" data-p="Shop -&gt; UPI">Shop→UPI</button><button class="pf-btn" data-p="UPI -&gt; RuPay -&gt; POPcard">UPI→RuPay→POPcard</button><button class="pf-btn" data-p="UPI -&gt; POPcard -&gt; Shop -&gt; RCBP">UPI→POPcard→Shop→RCBP</button><button class="pf-btn" data-p="UPI -&gt; POPcard -&gt; RuPay">UPI→POPcard→RuPay</button><button class="pf-btn" data-p="UPI -&gt; RuPay -&gt; POPcard -&gt; RCBP">UPI→RuPay→POPcard→RCBP</button><button class="pf-btn" data-p="UPI -&gt; RCBP -&gt; Shop">UPI→RCBP→Shop</button><button class="pf-btn" data-p="UPI -&gt; POPcard -&gt; RuPay -&gt; RCBP">UPI→POPcard→RuPay→RCBP</button><button class="pf-btn" data-p="UPI -&gt; RuPay -&gt; POPcard -&gt; Shop">UPI→RuPay→POPcard→Shop</button><button class="pf-btn" data-p="Shop -&gt; UPI -&gt; RuPay">Shop→UPI→RuPay</button><button class="pf-btn" data-p="UPI -&gt; Shop -&gt; RuPay -&gt; RCBP">UPI→Shop→RuPay→RCBP</button></div>
+<table class="t" id="mt">
+  <thead><tr>
+    <th>Path</th><th>UPI txn bucket</th>
+    <th style="text-align:right;">Users</th><th style="text-align:right;">% of path</th>
+    <th style="text-align:right;">D30-60 active</th><th style="text-align:right;">D30-60%</th>
+    <th style="width:60px;">bar</th><th>Interpretation</th>
+  </tr></thead>
+  <tbody id="tb"><tr><td style="white-space:nowrap"><span class="b bu">UPI</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">39,889</td>
+      <td style="text-align:right">38.7%</td>
+      <td style="text-align:right">0</td>
+      <td style="text-align:right"><span style="color:#E24B4A;font-weight:500">0.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:0%;background:#E24B4A;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">14,170</td>
+      <td style="text-align:right">13.7%</td>
+      <td style="text-align:right">574</td>
+      <td style="text-align:right"><span style="color:#E24B4A;font-weight:500">4.1%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:4.1%;background:#E24B4A;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">7,426</td>
+      <td style="text-align:right">7.2%</td>
+      <td style="text-align:right">568</td>
+      <td style="text-align:right"><span style="color:#E24B4A;font-weight:500">7.6%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:7.6%;background:#E24B4A;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">4,828</td>
+      <td style="text-align:right">4.7%</td>
+      <td style="text-align:right">549</td>
+      <td style="text-align:right"><span style="color:#E24B4A;font-weight:500">11.4%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:11.4%;background:#E24B4A;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">3,713</td>
+      <td style="text-align:right">3.6%</td>
+      <td style="text-align:right">439</td>
+      <td style="text-align:right"><span style="color:#E24B4A;font-weight:500">11.8%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:11.8%;background:#E24B4A;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">33,134</td>
+      <td style="text-align:right">32.1%</td>
+      <td style="text-align:right">13,597</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">41.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:41%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">High-frequency → next step</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">1,280</td>
+      <td style="text-align:right">15.3%</td>
+      <td style="text-align:right">353</td>
+      <td style="text-align:right"><span style="color:#E24B4A;font-weight:500">27.6%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:27.6%;background:#E24B4A;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">624</td>
+      <td style="text-align:right">7.5%</td>
+      <td style="text-align:right">252</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">40.4%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:40.4%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">478</td>
+      <td style="text-align:right">5.7%</td>
+      <td style="text-align:right">218</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">45.6%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:45.6%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">363</td>
+      <td style="text-align:right">4.3%</td>
+      <td style="text-align:right">173</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">47.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:47.7%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">374</td>
+      <td style="text-align:right">4.5%</td>
+      <td style="text-align:right">186</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">49.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:49.7%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">352</td>
+      <td style="text-align:right">4.2%</td>
+      <td style="text-align:right">186</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">52.8%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:52.8%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">4,879</td>
+      <td style="text-align:right">58.4%</td>
+      <td style="text-align:right">3,581</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">73.4%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:73.4%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">6,293</td>
+      <td style="text-align:right">78.4%</td>
+      <td style="text-align:right">2,215</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">35.2%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:35.2%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session RuPay</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">873</td>
+      <td style="text-align:right">10.9%</td>
+      <td style="text-align:right">436</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">49.9%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:49.9%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">328</td>
+      <td style="text-align:right">4.1%</td>
+      <td style="text-align:right">163</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">49.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:49.7%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">156</td>
+      <td style="text-align:right">1.9%</td>
+      <td style="text-align:right">83</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">53.2%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:53.2%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">92</td>
+      <td style="text-align:right">1.1%</td>
+      <td style="text-align:right">60</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">65.2%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:65.2%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">47</td>
+      <td style="text-align:right">0.6%</td>
+      <td style="text-align:right">26</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">55.3%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:55.3%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">240</td>
+      <td style="text-align:right">3%</td>
+      <td style="text-align:right">178</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">74.2%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:74.2%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">1,099</td>
+      <td style="text-align:right">81%</td>
+      <td style="text-align:right">658</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">59.9%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:59.9%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session POPcard</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">117</td>
+      <td style="text-align:right">8.6%</td>
+      <td style="text-align:right">89</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">76.1%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:76.1%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">51</td>
+      <td style="text-align:right">3.8%</td>
+      <td style="text-align:right">39</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">76.5%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:76.5%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">21</td>
+      <td style="text-align:right">1.5%</td>
+      <td style="text-align:right">19</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">90.5%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:90.5%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">15</td>
+      <td style="text-align:right">1.1%</td>
+      <td style="text-align:right">13</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">86.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:86.7%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">6</td>
+      <td style="text-align:right">0.4%</td>
+      <td style="text-align:right">6</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">47</td>
+      <td style="text-align:right">3.5%</td>
+      <td style="text-align:right">44</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">93.6%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:93.6%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">959</td>
+      <td style="text-align:right">73%</td>
+      <td style="text-align:right">674</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">70.3%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:70.3%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session RuPay</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">143</td>
+      <td style="text-align:right">10.9%</td>
+      <td style="text-align:right">106</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">74.1%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:74.1%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">59</td>
+      <td style="text-align:right">4.5%</td>
+      <td style="text-align:right">51</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">86.4%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:86.4%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">32</td>
+      <td style="text-align:right">2.4%</td>
+      <td style="text-align:right">26</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">81.3%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:81.3%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">21</td>
+      <td style="text-align:right">1.6%</td>
+      <td style="text-align:right">14</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">66.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:66.7%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">11</td>
+      <td style="text-align:right">0.8%</td>
+      <td style="text-align:right">10</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">90.9%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:90.9%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">88</td>
+      <td style="text-align:right">6.7%</td>
+      <td style="text-align:right">74</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">84.1%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:84.1%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">51</td>
+      <td style="text-align:right">4.4%</td>
+      <td style="text-align:right">19</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">37.3%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:37.3%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">86</td>
+      <td style="text-align:right">7.4%</td>
+      <td style="text-align:right">47</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">54.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:54.7%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">72</td>
+      <td style="text-align:right">6.2%</td>
+      <td style="text-align:right">40</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">55.6%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:55.6%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">55</td>
+      <td style="text-align:right">4.7%</td>
+      <td style="text-align:right">26</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">47.3%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:47.3%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">45</td>
+      <td style="text-align:right">3.9%</td>
+      <td style="text-align:right">27</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">60.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:60%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">42</td>
+      <td style="text-align:right">3.6%</td>
+      <td style="text-align:right">32</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">76.2%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:76.2%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">814</td>
+      <td style="text-align:right">69.9%</td>
+      <td style="text-align:right">728</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">89.4%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:89.4%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">442</td>
+      <td style="text-align:right">71.1%</td>
+      <td style="text-align:right">380</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">86.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:86%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session RuPay</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">81</td>
+      <td style="text-align:right">13%</td>
+      <td style="text-align:right">71</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">87.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:87.7%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">35</td>
+      <td style="text-align:right">5.6%</td>
+      <td style="text-align:right">30</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">85.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:85.7%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">16</td>
+      <td style="text-align:right">2.6%</td>
+      <td style="text-align:right">14</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">87.5%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:87.5%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">10</td>
+      <td style="text-align:right">1.6%</td>
+      <td style="text-align:right">10</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">4</td>
+      <td style="text-align:right">0.6%</td>
+      <td style="text-align:right">4</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">34</td>
+      <td style="text-align:right">5.5%</td>
+      <td style="text-align:right">34</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">317</td>
+      <td style="text-align:right">70.4%</td>
+      <td style="text-align:right">297</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">93.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:93.7%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session POPcard</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">52</td>
+      <td style="text-align:right">11.6%</td>
+      <td style="text-align:right">49</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">94.2%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:94.2%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">27</td>
+      <td style="text-align:right">6%</td>
+      <td style="text-align:right">26</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">96.3%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:96.3%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">8</td>
+      <td style="text-align:right">1.8%</td>
+      <td style="text-align:right">8</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">11</td>
+      <td style="text-align:right">2.4%</td>
+      <td style="text-align:right">11</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">6</td>
+      <td style="text-align:right">1.3%</td>
+      <td style="text-align:right">6</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">29</td>
+      <td style="text-align:right">6.4%</td>
+      <td style="text-align:right">29</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">335</td>
+      <td style="text-align:right">83.3%</td>
+      <td style="text-align:right">194</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">57.9%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:57.9%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session POPcard</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">27</td>
+      <td style="text-align:right">6.7%</td>
+      <td style="text-align:right">20</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">74.1%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:74.1%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">17</td>
+      <td style="text-align:right">4.2%</td>
+      <td style="text-align:right">14</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">82.4%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:82.4%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">7</td>
+      <td style="text-align:right">1.7%</td>
+      <td style="text-align:right">7</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">4</td>
+      <td style="text-align:right">1%</td>
+      <td style="text-align:right">4</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">2</td>
+      <td style="text-align:right">0.5%</td>
+      <td style="text-align:right">2</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">10</td>
+      <td style="text-align:right">2.5%</td>
+      <td style="text-align:right">9</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">90.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:90%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">191</td>
+      <td style="text-align:right">51.6%</td>
+      <td style="text-align:right">134</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">70.2%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:70.2%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">69</td>
+      <td style="text-align:right">18.6%</td>
+      <td style="text-align:right">47</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">68.1%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:68.1%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">28</td>
+      <td style="text-align:right">7.6%</td>
+      <td style="text-align:right">20</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">71.4%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:71.4%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">15</td>
+      <td style="text-align:right">4.1%</td>
+      <td style="text-align:right">9</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">60.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:60%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">13</td>
+      <td style="text-align:right">3.5%</td>
+      <td style="text-align:right">9</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">69.2%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:69.2%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">6</td>
+      <td style="text-align:right">1.6%</td>
+      <td style="text-align:right">6</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">48</td>
+      <td style="text-align:right">13%</td>
+      <td style="text-align:right">42</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">87.5%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:87.5%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">27</td>
+      <td style="text-align:right">7.5%</td>
+      <td style="text-align:right">22</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">81.5%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:81.5%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">25</td>
+      <td style="text-align:right">6.9%</td>
+      <td style="text-align:right">22</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">88.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:88%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">16</td>
+      <td style="text-align:right">4.4%</td>
+      <td style="text-align:right">13</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">81.3%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:81.3%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">13</td>
+      <td style="text-align:right">3.6%</td>
+      <td style="text-align:right">12</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">92.3%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:92.3%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">15</td>
+      <td style="text-align:right">4.2%</td>
+      <td style="text-align:right">13</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">86.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:86.7%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">17</td>
+      <td style="text-align:right">4.7%</td>
+      <td style="text-align:right">17</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">247</td>
+      <td style="text-align:right">68.6%</td>
+      <td style="text-align:right">241</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">97.6%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:97.6%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">173</td>
+      <td style="text-align:right">77.6%</td>
+      <td style="text-align:right">167</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">96.5%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:96.5%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session RuPay</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">23</td>
+      <td style="text-align:right">10.3%</td>
+      <td style="text-align:right">22</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">95.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:95.7%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">9</td>
+      <td style="text-align:right">4%</td>
+      <td style="text-align:right">9</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">4</td>
+      <td style="text-align:right">1.8%</td>
+      <td style="text-align:right">4</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">3</td>
+      <td style="text-align:right">1.3%</td>
+      <td style="text-align:right">3</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">11</td>
+      <td style="text-align:right">4.9%</td>
+      <td style="text-align:right">11</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bs">Shop</span><span class="nar">→</span><span class="b bu">UPI</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">193</td>
+      <td style="text-align:right">100%</td>
+      <td style="text-align:right">64</td>
+      <td style="text-align:right"><span style="color:#E24B4A;font-weight:500">33.2%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:33.2%;background:#E24B4A;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">141</td>
+      <td style="text-align:right">88.1%</td>
+      <td style="text-align:right">125</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">88.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:88.7%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session RuPay</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">10</td>
+      <td style="text-align:right">6.3%</td>
+      <td style="text-align:right">7</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">70.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:70%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">3</td>
+      <td style="text-align:right">1.9%</td>
+      <td style="text-align:right">3</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">2</td>
+      <td style="text-align:right">1.3%</td>
+      <td style="text-align:right">2</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">2</td>
+      <td style="text-align:right">1.3%</td>
+      <td style="text-align:right">2</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">1</td>
+      <td style="text-align:right">0.6%</td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">1</td>
+      <td style="text-align:right">0.6%</td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">97</td>
+      <td style="text-align:right">71.9%</td>
+      <td style="text-align:right">92</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">94.8%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:94.8%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session POPcard</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">17</td>
+      <td style="text-align:right">12.6%</td>
+      <td style="text-align:right">16</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">94.1%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:94.1%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">5</td>
+      <td style="text-align:right">3.7%</td>
+      <td style="text-align:right">5</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">3</td>
+      <td style="text-align:right">2.2%</td>
+      <td style="text-align:right">3</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">1</td>
+      <td style="text-align:right">0.7%</td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">5</td>
+      <td style="text-align:right">3.7%</td>
+      <td style="text-align:right">5</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">7</td>
+      <td style="text-align:right">5.2%</td>
+      <td style="text-align:right">7</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">102</td>
+      <td style="text-align:right">84.3%</td>
+      <td style="text-align:right">93</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">91.2%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:91.2%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session POPcard</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">13</td>
+      <td style="text-align:right">10.7%</td>
+      <td style="text-align:right">13</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">2</td>
+      <td style="text-align:right">1.7%</td>
+      <td style="text-align:right">2</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">2</td>
+      <td style="text-align:right">1.7%</td>
+      <td style="text-align:right">2</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">1</td>
+      <td style="text-align:right">0.8%</td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">1</td>
+      <td style="text-align:right">0.8%</td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">76</td>
+      <td style="text-align:right">69.1%</td>
+      <td style="text-align:right">71</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">93.4%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:93.4%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session RuPay</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">16</td>
+      <td style="text-align:right">14.5%</td>
+      <td style="text-align:right">16</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">10</td>
+      <td style="text-align:right">9.1%</td>
+      <td style="text-align:right">10</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">2</td>
+      <td style="text-align:right">1.8%</td>
+      <td style="text-align:right">2</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">6</td>
+      <td style="text-align:right">5.5%</td>
+      <td style="text-align:right">6</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">3</td>
+      <td style="text-align:right">4.2%</td>
+      <td style="text-align:right">3</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">3</td>
+      <td style="text-align:right">4.2%</td>
+      <td style="text-align:right">3</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">3</td>
+      <td style="text-align:right">4.2%</td>
+      <td style="text-align:right">3</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">7</td>
+      <td style="text-align:right">9.7%</td>
+      <td style="text-align:right">7</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">3</td>
+      <td style="text-align:right">4.2%</td>
+      <td style="text-align:right">2</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">66.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:66.7%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bc">RCBP</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">53</td>
+      <td style="text-align:right">73.6%</td>
+      <td style="text-align:right">52</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">98.1%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:98.1%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">58</td>
+      <td style="text-align:right">89.2%</td>
+      <td style="text-align:right">56</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">96.6%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:96.6%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session POPcard</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">7</td>
+      <td style="text-align:right">10.8%</td>
+      <td style="text-align:right">7</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">45</td>
+      <td style="text-align:right">73.8%</td>
+      <td style="text-align:right">40</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">88.9%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:88.9%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Same-session RuPay</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">7</td>
+      <td style="text-align:right">11.5%</td>
+      <td style="text-align:right">5</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">71.4%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:71.4%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">1</td>
+      <td style="text-align:right">1.6%</td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">2</td>
+      <td style="text-align:right">3.3%</td>
+      <td style="text-align:right">2</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bp">POPcard</span><span class="nar">→</span><span class="b bs">Shop</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">6</td>
+      <td style="text-align:right">9.8%</td>
+      <td style="text-align:right">6</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr><tr><td style="white-space:nowrap"><span class="b bs">Shop</span><span class="nar">→</span><span class="b bu">UPI</span><span class="nar">→</span><span class="b br">RuPay</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">57</td>
+      <td style="text-align:right">100%</td>
+      <td style="text-align:right">35</td>
+      <td style="text-align:right"><span style="color:#EF9F27;font-weight:500">61.4%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:61.4%;background:#EF9F27;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk0">0</span></td>
+      <td style="text-align:right;font-weight:500">20</td>
+      <td style="text-align:right">40%</td>
+      <td style="text-align:right">17</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">85.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:85%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk1">1</span></td>
+      <td style="text-align:right;font-weight:500">12</td>
+      <td style="text-align:right">24%</td>
+      <td style="text-align:right">11</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">91.7%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:91.7%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk2">2</span></td>
+      <td style="text-align:right;font-weight:500">5</td>
+      <td style="text-align:right">10%</td>
+      <td style="text-align:right">4</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">80.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:80%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Low-habit — retention risk</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk3">3</span></td>
+      <td style="text-align:right;font-weight:500">3</td>
+      <td style="text-align:right">6%</td>
+      <td style="text-align:right">3</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk4">4</span></td>
+      <td style="text-align:right;font-weight:500">1</td>
+      <td style="text-align:right">2%</td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bk5">5</span></td>
+      <td style="text-align:right;font-weight:500">1</td>
+      <td style="text-align:right">2%</td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">—</td></tr><tr><td style="white-space:nowrap"><span class="b bu">UPI</span><span class="nar">→</span><span class="b bs">Shop</span><span class="nar">→</span><span class="b br">RuPay</span><span class="nar">→</span><span class="b bc">RCBP</span></td>
+      <td><span class="bkp">6+</span></td>
+      <td style="text-align:right;font-weight:500">8</td>
+      <td style="text-align:right">16%</td>
+      <td style="text-align:right">8</td>
+      <td style="text-align:right"><span style="color:#1D9E75;font-weight:500">100.0%</span></td>
+      <td><div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:100%;background:#1D9E75;"></div></div></td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">Power user — high habit</td></tr></tbody>
+</table>
+
+<p class="sl" style="margin-top:1.5rem;">D30-60 retention by UPI txn bucket — top 8 paths</p>
+<div style="position:relative;width:100%;height:320px;"><canvas id="c1" role="img" aria-label="Grouped bar chart showing D30-60 retention by UPI transaction bucket for top 8 paths" width="2908" height="640" style="display: block; box-sizing: border-box; height: 320px; width: 1454px;">Retention increases with transaction bucket for all paths.</canvas></div>
+
+<p class="sl" style="margin-top:1.5rem;">User distribution by UPI bucket — UPI-only path (103k users)</p>
+<div style="position:relative;width:100%;height:180px;"><canvas id="c2" role="img" aria-label="Bar chart showing distribution of UPI-only users across transaction count buckets 1 through 6+" width="2908" height="360" style="display: block; box-sizing: border-box; height: 180px; width: 1454px;">38.7% in bucket 1, 32.1% in bucket 6+.</canvas></div>
+
+<hr class="divider">
+<p class="sl">actionables — from bucket data + all prior analyses</p>
+
+<div class="act-grid">
+  <div class="acard">
+    <div class="ahead"><div class="ai" style="background:#FCF0F0;color:#A32D2D;">1</div><span>39,889 UPI-only, 1-txn users — stop spending, start understanding</span></div>
+    <div class="ali"><b>0% D30-60. These users did not retain.</b> They are not a re-engagement opportunity</div>
+    <div class="asub">Exception: if transaction was D27–30 days ago, a final same-session win-back offer is still viable — but only in the first 72h</div>
+    <div class="ali">Root-cause analysis needed: was this 1 txn a failed P2P send? A bill? A merchant they never revisited? Understanding the context determines if this is a product or acquisition problem</div>
+    <div class="ali">Stop sending D7 and D14 re-engagement push campaigns to this segment — CTRs will be near zero and you're burning notification quota that affects deliverability for other segments</div>
+  </div>
+
+  <div class="acard">
+    <div class="ahead"><div class="ai" style="background:#EDF6E9;color:#2A5C0F;">2</div><span>33,134 UPI-only, 6+ txns — the highest-value cross-sell pool in the cohort</span></div>
+    <div class="ali"><b>41% D30-60 already</b> — highest retention of any UPI-only sub-segment</div>
+    <div class="ali">These users have proven payment frequency. They need a reason to expand, not a reason to transact</div>
+    <div class="ali"><b>Target with: RuPay (P80 window = 1d, so run as in-app banner on next login)</b>, Shop wave 2 (D20–25 window), POPcard (same-session CTA)</div>
+    <div class="asub">If 20% of 33k convert to RuPay → 6,600 users move to UPI→RuPay path at 35.9% D30-60. Net lift = ~1,400 additional retained users just from this segment</div>
+    <div class="ali">Priority comms: personalised — "You've made X payments this month. Unlock higher rewards with RuPay" — include their actual transaction count</div>
+  </div>
+
+  <div class="acard">
+    <div class="ahead"><div class="ai" style="background:#E6F1FB;color:#0C447C;">3</div><span>UPI txn frequency as retention signal — use it to score users in real time</span></div>
+    <div class="ali">Across every path, the 6+ bucket retains at 40–100% D30-60. Frequency predicts retention <b>better than which service a user adopted</b></div>
+    <div class="ali"><b>Build a "UPI frequency score" (txn count in D0-7)</b> — this is already your activation metric (5+ txns). Use 3+ as "at-risk engaged" and 6+ as "power user"</div>
+    <div class="asub">Power users (6+ txns) need expansion triggers. At-risk (3–5 txns) need habit reinforcement (streak rewards, cashback ladders). Low (1–2 txns) need UPI habit formation before any cross-sell</div>
+    <div class="ali">Don't push Shop or RCBP to bucket-1 or bucket-2 users — their UPI habit isn't formed yet and cross-sell noise will increase churn, not reduce it</div>
+  </div>
+
+  <div class="acard">
+    <div class="ahead"><div class="ai" style="background:#EEEDFE;color:#3C3489;">4</div><span>RuPay same-session adoption (78.4%) — redesign the post-txn screen now</span></div>
+    <div class="ali">The bucket-0 UPI → RuPay data confirms: <b>most RuPay decisions happen before the user's second UPI transaction</b></div>
+    <div class="ali">Bucket-1 RuPay users (1 UPI txn before RuPay) have 49.9% D30-60 vs 35.2% for bucket-0. <b>A single completed UPI txn before the RuPay prompt doubles retention lift</b></div>
+    <div class="asub">Implication: show the RuPay CTA AFTER the first transaction success screen, not before or during. The completed payment creates the psychological anchor ("this works, now improve it")</div>
+    <div class="ali">For bucket-6+ RuPay users (240 users, 74.2% D30-60): these are habituated UPI users who finally linked RuPay late. They are already committed — focus cross-sell on Shop and RCBP</div>
+  </div>
+
+  <div class="acard">
+    <div class="ahead"><div class="ai" style="background:#FAECE7;color:#993C1D;">5</div><span>RCBP is a power-user endpoint — don't push it early</span></div>
+    <div class="ali">69.9% of UPI→RCBP users had 6+ UPI txns before RCBP. Only 4.4% had 0. RCBP naturally follows deep UPI engagement — it is NOT an early-funnel product</div>
+    <div class="ali"><b>89.4% D30-60 for 6+ bucket RCBP users</b> — these are your best customers. Treat them as VIPs, not just conversion targets</div>
+    <div class="ali">Don't run RCBP campaigns to users with &lt;3 UPI txns. These users haven't formed the UPI habit; RCBP messaging will confuse them and waste budget</div>
+    <div class="asub">Trigger: when a user crosses the 6-txn threshold AND their recent txns include a mobile network (Jio/Airtel payee name), fire an RCBP contextual in-app message within 24h</div>
+    <div class="ali">UPI → RCBP → Shop = 96.7–98.1% D30-60. After first RCBP, push Shop at RCBP success screen — this is your highest-conversion moment for the Shop funnel</div>
+  </div>
+
+  <div class="acard">
+    <div class="ahead"><div class="ai" style="background:#EAF3DE;color:#27500A;">6</div><span>Shop — only target users with 3+ UPI txns before nudging</span></div>
+    <div class="ali">UPI→Shop bucket-0 (0 UPI txns before Shop, 15.3% of path): 27.6% D30-60. Bucket-6+: 73.4%. <b>D30-60 triples from lowest to highest bucket</b></div>
+    <div class="ali">These bucket-0 shop users likely came through a Shop-first flow or campaign — they haven't habituated to UPI yet, so shop order doesn't lock them in</div>
+    <div class="ali"><b>Gate Shop campaigns behind a 3+ UPI txn requirement.</b> Users with 3+ UPI txns before their first shop order retain at 47–52% vs 28–40% for earlier buckets</div>
+    <div class="asub">This also reduces CAC on shop — users who are already engaged cost less to convert and generate more long-term GMV. Focus Shop acquisition spend on existing UPI transactors, not cold installs</div>
+    <div class="ali">Shop → UPI path (195 users, 100% in bucket 0 with 1 P80 shop order): only 33.2% D30-60. Confirms again — shop-first doesn't build lasting retention. UPI must come first</div>
+  </div>
+</div>
+
+<hr class="divider">
+<p class="sl">segment prioritisation — consolidated from all analyses</p>
+<table class="t">
+  <thead><tr>
+    <th>Segment</th><th style="text-align:right;">Size</th><th>D30-60 now</th><th>Target D30-60</th><th>When to nudge (P80 timing)</th><th>What to nudge</th><th>Why (data basis)</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>UPI-only, 1 txn</td><td style="text-align:right;">39,889</td><td style="color:#E24B4A">0%</td><td>—</td><td>Do not nudge</td><td>Root-cause analysis only</td><td>0% D30-60; budget waste</td></tr>
+    <tr><td>UPI-only, 2–5 txns</td><td style="text-align:right;">30,137</td><td style="color:#EF9F27">4–12%</td><td>20–35%</td><td>In-app at next login (D1–D5)</td><td>Cashback ladder to habit 6th txn</td><td>Retention doubles at each txn step</td></tr>
+    <tr><td>UPI-only, 6+ txns</td><td style="text-align:right;">33,134</td><td style="color:#EF9F27">41%</td><td>55–65%</td><td>Next login (P80 RuPay = 1d; Shop wave D3+D20)</td><td>RuPay post-txn CTA; Shop banner</td><td>Highest-value cross-sell pool; proven frequency</td></tr>
+    <tr><td>UPI→RuPay, bucket 0–1</td><td style="text-align:right;">7,166</td><td style="color:#EF9F27">35–50%</td><td>60–70%</td><td>D8–D26 (P80 of RuPay→Shop gap)</td><td>Shop wave 1 (D5) + wave 2 (D20)</td><td>Cross-sell to Shop adds +20pp D30-60</td></tr>
+    <tr><td>UPI→Shop, bucket 6+</td><td style="text-align:right;">4,879</td><td style="color:#1D9E75">73.4%</td><td>89%+</td><td>D15–D30 (P80 of Shop→RCBP)</td><td>RCBP contextual push</td><td>UPI→Shop→RCBP = 91.3% D30-60</td></tr>
+    <tr><td>UPI→POPcard, any bucket</td><td style="text-align:right;">1,356</td><td style="color:#1D9E75">60–94%</td><td>92%+</td><td>D25–D40 (P80 of POPcard→RCBP)</td><td>RCBP cross-sell at D25</td><td>UPI→POPcard→RCBP = 92.6% D30-60</td></tr>
+    <tr><td>UPI→RCBP, bucket 6+</td><td style="text-align:right;">814</td><td style="color:#1D9E75">89.4%</td><td>96%+</td><td>At RCBP success screen (immediate)</td><td>Shop cross-sell in RCBP success moment</td><td>UPI→RCBP→Shop = 96.7–98.1% D30-60</td></tr>
+  </tbody>
+</table>
+<p class="seg-note">Sizes are from March 2026 NTU cohort. Timing windows are P80-based from prior analysis. D30-60 targets based on observed path-level retention for adjacent paths.</p>
+
+</div>
+
+<script src="./pop_path_bucket_retention_files/chart.umd.js"></script>
+<script>
+const svc={'UPI':'<span class="b bu">UPI</span>','RuPay':'<span class="b br">RuPay</span>','POPcard':'<span class="b bp">POPcard</span>','Shop':'<span class="b bs">Shop</span>','RCBP':'<span class="b bc">RCBP</span>'};
+function rp(p){if(!p)return'—';return p.split(' -> ').map((s,i)=>(i>0?'<span class="nar">→</span>':'')+svc[s]).join('');}
+function bkHtml(bk){const m={'0':'bk0','1':'bk1','2':'bk2','3':'bk3','4':'bk4','5':'bk5','6+':'bkp'};return`<span class="${m[bk]||'bk0'}">${bk}</span>`;}
+function rc(v){if(v===null||v===undefined)return'—';const n=+v;if(n>=70)return'<span style="color:#1D9E75;font-weight:500">'+n.toFixed(1)+'%</span>';if(n>=35)return'<span style="color:#EF9F27;font-weight:500">'+n.toFixed(1)+'%</span>';return'<span style="color:#E24B4A;font-weight:500">'+n.toFixed(1)+'%</span>';}
+function bar(v){const bw=Math.min(100,+v||0);const col=bw>=70?'#1D9E75':bw>=35?'#EF9F27':'#E24B4A';return`<div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;width:55px;display:inline-block;vertical-align:middle;"><div style="height:6px;border-radius:3px;width:${bw}%;background:${col};"></div></div>`;}
+function interp(p,bk,d){
+  if(bk==='0'&&p==='UPI')return'Churned — 0 retention';
+  if(bk==='0'&&p.startsWith('UPI -> R')&&p.includes('RuPay'))return'Same-session RuPay';
+  if(bk==='0'&&p.includes('POPcard'))return'Same-session POPcard';
+  if(bk==='6+'&&d>=70)return'Power user — high habit';
+  if(bk==='6+')return'High-frequency → next step';
+  if(bk==='1'||bk==='2')return'Low-habit — retention risk';
+  return'—';
+}
+
+const raw=[
+  {p:'UPI',pu:103160,bk:'1',u:39889,pp:38.7,d3:0,d:0.0},
+  {p:'UPI',pu:103160,bk:'2',u:14170,pp:13.7,d3:574,d:4.1},
+  {p:'UPI',pu:103160,bk:'3',u:7426,pp:7.2,d3:568,d:7.6},
+  {p:'UPI',pu:103160,bk:'4',u:4828,pp:4.7,d3:549,d:11.4},
+  {p:'UPI',pu:103160,bk:'5',u:3713,pp:3.6,d3:439,d:11.8},
+  {p:'UPI',pu:103160,bk:'6+',u:33134,pp:32.1,d3:13597,d:41.0},
+  {p:'UPI -> Shop',pu:8350,bk:'0',u:1280,pp:15.3,d3:353,d:27.6},
+  {p:'UPI -> Shop',pu:8350,bk:'1',u:624,pp:7.5,d3:252,d:40.4},
+  {p:'UPI -> Shop',pu:8350,bk:'2',u:478,pp:5.7,d3:218,d:45.6},
+  {p:'UPI -> Shop',pu:8350,bk:'3',u:363,pp:4.3,d3:173,d:47.7},
+  {p:'UPI -> Shop',pu:8350,bk:'4',u:374,pp:4.5,d3:186,d:49.7},
+  {p:'UPI -> Shop',pu:8350,bk:'5',u:352,pp:4.2,d3:186,d:52.8},
+  {p:'UPI -> Shop',pu:8350,bk:'6+',u:4879,pp:58.4,d3:3581,d:73.4},
+  {p:'UPI -> RuPay',pu:8029,bk:'0',u:6293,pp:78.4,d3:2215,d:35.2},
+  {p:'UPI -> RuPay',pu:8029,bk:'1',u:873,pp:10.9,d3:436,d:49.9},
+  {p:'UPI -> RuPay',pu:8029,bk:'2',u:328,pp:4.1,d3:163,d:49.7},
+  {p:'UPI -> RuPay',pu:8029,bk:'3',u:156,pp:1.9,d3:83,d:53.2},
+  {p:'UPI -> RuPay',pu:8029,bk:'4',u:92,pp:1.1,d3:60,d:65.2},
+  {p:'UPI -> RuPay',pu:8029,bk:'5',u:47,pp:0.6,d3:26,d:55.3},
+  {p:'UPI -> RuPay',pu:8029,bk:'6+',u:240,pp:3.0,d3:178,d:74.2},
+  {p:'UPI -> POPcard',pu:1356,bk:'0',u:1099,pp:81.0,d3:658,d:59.9},
+  {p:'UPI -> POPcard',pu:1356,bk:'1',u:117,pp:8.6,d3:89,d:76.1},
+  {p:'UPI -> POPcard',pu:1356,bk:'2',u:51,pp:3.8,d3:39,d:76.5},
+  {p:'UPI -> POPcard',pu:1356,bk:'3',u:21,pp:1.5,d3:19,d:90.5},
+  {p:'UPI -> POPcard',pu:1356,bk:'4',u:15,pp:1.1,d3:13,d:86.7},
+  {p:'UPI -> POPcard',pu:1356,bk:'5',u:6,pp:0.4,d3:6,d:100},
+  {p:'UPI -> POPcard',pu:1356,bk:'6+',u:47,pp:3.5,d3:44,d:93.6},
+  {p:'UPI -> RuPay -> Shop',pu:1313,bk:'0',u:959,pp:73.0,d3:674,d:70.3},
+  {p:'UPI -> RuPay -> Shop',pu:1313,bk:'1',u:143,pp:10.9,d3:106,d:74.1},
+  {p:'UPI -> RuPay -> Shop',pu:1313,bk:'2',u:59,pp:4.5,d3:51,d:86.4},
+  {p:'UPI -> RuPay -> Shop',pu:1313,bk:'3',u:32,pp:2.4,d3:26,d:81.3},
+  {p:'UPI -> RuPay -> Shop',pu:1313,bk:'4',u:21,pp:1.6,d3:14,d:66.7},
+  {p:'UPI -> RuPay -> Shop',pu:1313,bk:'5',u:11,pp:0.8,d3:10,d:90.9},
+  {p:'UPI -> RuPay -> Shop',pu:1313,bk:'6+',u:88,pp:6.7,d3:74,d:84.1},
+  {p:'UPI -> RCBP',pu:1165,bk:'0',u:51,pp:4.4,d3:19,d:37.3},
+  {p:'UPI -> RCBP',pu:1165,bk:'1',u:86,pp:7.4,d3:47,d:54.7},
+  {p:'UPI -> RCBP',pu:1165,bk:'2',u:72,pp:6.2,d3:40,d:55.6},
+  {p:'UPI -> RCBP',pu:1165,bk:'3',u:55,pp:4.7,d3:26,d:47.3},
+  {p:'UPI -> RCBP',pu:1165,bk:'4',u:45,pp:3.9,d3:27,d:60.0},
+  {p:'UPI -> RCBP',pu:1165,bk:'5',u:42,pp:3.6,d3:32,d:76.2},
+  {p:'UPI -> RCBP',pu:1165,bk:'6+',u:814,pp:69.9,d3:728,d:89.4},
+  {p:'UPI -> RuPay -> RCBP',pu:622,bk:'0',u:442,pp:71.1,d3:380,d:86.0},
+  {p:'UPI -> RuPay -> RCBP',pu:622,bk:'1',u:81,pp:13.0,d3:71,d:87.7},
+  {p:'UPI -> RuPay -> RCBP',pu:622,bk:'2',u:35,pp:5.6,d3:30,d:85.7},
+  {p:'UPI -> RuPay -> RCBP',pu:622,bk:'3',u:16,pp:2.6,d3:14,d:87.5},
+  {p:'UPI -> RuPay -> RCBP',pu:622,bk:'4',u:10,pp:1.6,d3:10,d:100},
+  {p:'UPI -> RuPay -> RCBP',pu:622,bk:'5',u:4,pp:0.6,d3:4,d:100},
+  {p:'UPI -> RuPay -> RCBP',pu:622,bk:'6+',u:34,pp:5.5,d3:34,d:100},
+  {p:'UPI -> POPcard -> RCBP',pu:450,bk:'0',u:317,pp:70.4,d3:297,d:93.7},
+  {p:'UPI -> POPcard -> RCBP',pu:450,bk:'1',u:52,pp:11.6,d3:49,d:94.2},
+  {p:'UPI -> POPcard -> RCBP',pu:450,bk:'2',u:27,pp:6.0,d3:26,d:96.3},
+  {p:'UPI -> POPcard -> RCBP',pu:450,bk:'3',u:8,pp:1.8,d3:8,d:100},
+  {p:'UPI -> POPcard -> RCBP',pu:450,bk:'4',u:11,pp:2.4,d3:11,d:100},
+  {p:'UPI -> POPcard -> RCBP',pu:450,bk:'5',u:6,pp:1.3,d3:6,d:100},
+  {p:'UPI -> POPcard -> RCBP',pu:450,bk:'6+',u:29,pp:6.4,d3:29,d:100},
+  {p:'UPI -> POPcard -> Shop',pu:402,bk:'0',u:335,pp:83.3,d3:194,d:57.9},
+  {p:'UPI -> POPcard -> Shop',pu:402,bk:'1',u:27,pp:6.7,d3:20,d:74.1},
+  {p:'UPI -> POPcard -> Shop',pu:402,bk:'2',u:17,pp:4.2,d3:14,d:82.4},
+  {p:'UPI -> POPcard -> Shop',pu:402,bk:'3',u:7,pp:1.7,d3:7,d:100},
+  {p:'UPI -> POPcard -> Shop',pu:402,bk:'4',u:4,pp:1.0,d3:4,d:100},
+  {p:'UPI -> POPcard -> Shop',pu:402,bk:'5',u:2,pp:0.5,d3:2,d:100},
+  {p:'UPI -> POPcard -> Shop',pu:402,bk:'6+',u:10,pp:2.5,d3:9,d:90.0},
+  {p:'UPI -> Shop -> RuPay',pu:370,bk:'0',u:191,pp:51.6,d3:134,d:70.2},
+  {p:'UPI -> Shop -> RuPay',pu:370,bk:'1',u:69,pp:18.6,d3:47,d:68.1},
+  {p:'UPI -> Shop -> RuPay',pu:370,bk:'2',u:28,pp:7.6,d3:20,d:71.4},
+  {p:'UPI -> Shop -> RuPay',pu:370,bk:'3',u:15,pp:4.1,d3:9,d:60.0},
+  {p:'UPI -> Shop -> RuPay',pu:370,bk:'4',u:13,pp:3.5,d3:9,d:69.2},
+  {p:'UPI -> Shop -> RuPay',pu:370,bk:'5',u:6,pp:1.6,d3:6,d:100},
+  {p:'UPI -> Shop -> RuPay',pu:370,bk:'6+',u:48,pp:13.0,d3:42,d:87.5},
+  {p:'UPI -> Shop -> RCBP',pu:360,bk:'0',u:27,pp:7.5,d3:22,d:81.5},
+  {p:'UPI -> Shop -> RCBP',pu:360,bk:'1',u:25,pp:6.9,d3:22,d:88.0},
+  {p:'UPI -> Shop -> RCBP',pu:360,bk:'2',u:16,pp:4.4,d3:13,d:81.3},
+  {p:'UPI -> Shop -> RCBP',pu:360,bk:'3',u:13,pp:3.6,d3:12,d:92.3},
+  {p:'UPI -> Shop -> RCBP',pu:360,bk:'4',u:15,pp:4.2,d3:13,d:86.7},
+  {p:'UPI -> Shop -> RCBP',pu:360,bk:'5',u:17,pp:4.7,d3:17,d:100},
+  {p:'UPI -> Shop -> RCBP',pu:360,bk:'6+',u:247,pp:68.6,d3:241,d:97.6},
+  {p:'UPI -> RuPay -> Shop -> RCBP',pu:223,bk:'0',u:173,pp:77.6,d3:167,d:96.5},
+  {p:'UPI -> RuPay -> Shop -> RCBP',pu:223,bk:'1',u:23,pp:10.3,d3:22,d:95.7},
+  {p:'UPI -> RuPay -> Shop -> RCBP',pu:223,bk:'2',u:9,pp:4.0,d3:9,d:100},
+  {p:'UPI -> RuPay -> Shop -> RCBP',pu:223,bk:'3',u:4,pp:1.8,d3:4,d:100},
+  {p:'UPI -> RuPay -> Shop -> RCBP',pu:223,bk:'4',u:3,pp:1.3,d3:3,d:100},
+  {p:'UPI -> RuPay -> Shop -> RCBP',pu:223,bk:'6+',u:11,pp:4.9,d3:11,d:100},
+  {p:'Shop -> UPI',pu:193,bk:'0',u:193,pp:100,d3:64,d:33.2},
+  {p:'UPI -> RuPay -> POPcard',pu:160,bk:'0',u:141,pp:88.1,d3:125,d:88.7},
+  {p:'UPI -> RuPay -> POPcard',pu:160,bk:'1',u:10,pp:6.3,d3:7,d:70.0},
+  {p:'UPI -> RuPay -> POPcard',pu:160,bk:'2',u:3,pp:1.9,d3:3,d:100},
+  {p:'UPI -> RuPay -> POPcard',pu:160,bk:'3',u:2,pp:1.3,d3:2,d:100},
+  {p:'UPI -> RuPay -> POPcard',pu:160,bk:'4',u:2,pp:1.3,d3:2,d:100},
+  {p:'UPI -> RuPay -> POPcard',pu:160,bk:'5',u:1,pp:0.6,d3:1,d:100},
+  {p:'UPI -> RuPay -> POPcard',pu:160,bk:'6+',u:1,pp:0.6,d3:1,d:100},
+  {p:'UPI -> POPcard -> Shop -> RCBP',pu:135,bk:'0',u:97,pp:71.9,d3:92,d:94.8},
+  {p:'UPI -> POPcard -> Shop -> RCBP',pu:135,bk:'1',u:17,pp:12.6,d3:16,d:94.1},
+  {p:'UPI -> POPcard -> Shop -> RCBP',pu:135,bk:'2',u:5,pp:3.7,d3:5,d:100},
+  {p:'UPI -> POPcard -> Shop -> RCBP',pu:135,bk:'3',u:3,pp:2.2,d3:3,d:100},
+  {p:'UPI -> POPcard -> Shop -> RCBP',pu:135,bk:'4',u:1,pp:0.7,d3:1,d:100},
+  {p:'UPI -> POPcard -> Shop -> RCBP',pu:135,bk:'5',u:5,pp:3.7,d3:5,d:100},
+  {p:'UPI -> POPcard -> Shop -> RCBP',pu:135,bk:'6+',u:7,pp:5.2,d3:7,d:100},
+  {p:'UPI -> POPcard -> RuPay',pu:121,bk:'0',u:102,pp:84.3,d3:93,d:91.2},
+  {p:'UPI -> POPcard -> RuPay',pu:121,bk:'1',u:13,pp:10.7,d3:13,d:100},
+  {p:'UPI -> POPcard -> RuPay',pu:121,bk:'2',u:2,pp:1.7,d3:2,d:100},
+  {p:'UPI -> POPcard -> RuPay',pu:121,bk:'3',u:2,pp:1.7,d3:2,d:100},
+  {p:'UPI -> POPcard -> RuPay',pu:121,bk:'4',u:1,pp:0.8,d3:1,d:100},
+  {p:'UPI -> POPcard -> RuPay',pu:121,bk:'5',u:1,pp:0.8,d3:1,d:100},
+  {p:'UPI -> RuPay -> POPcard -> RCBP',pu:110,bk:'0',u:76,pp:69.1,d3:71,d:93.4},
+  {p:'UPI -> RuPay -> POPcard -> RCBP',pu:110,bk:'1',u:16,pp:14.5,d3:16,d:100},
+  {p:'UPI -> RuPay -> POPcard -> RCBP',pu:110,bk:'2',u:10,pp:9.1,d3:10,d:100},
+  {p:'UPI -> RuPay -> POPcard -> RCBP',pu:110,bk:'3',u:2,pp:1.8,d3:2,d:100},
+  {p:'UPI -> RuPay -> POPcard -> RCBP',pu:110,bk:'6+',u:6,pp:5.5,d3:6,d:100},
+  {p:'UPI -> RCBP -> Shop',pu:72,bk:'0',u:3,pp:4.2,d3:3,d:100},
+  {p:'UPI -> RCBP -> Shop',pu:72,bk:'1',u:3,pp:4.2,d3:3,d:100},
+  {p:'UPI -> RCBP -> Shop',pu:72,bk:'2',u:3,pp:4.2,d3:3,d:100},
+  {p:'UPI -> RCBP -> Shop',pu:72,bk:'3',u:7,pp:9.7,d3:7,d:100},
+  {p:'UPI -> RCBP -> Shop',pu:72,bk:'5',u:3,pp:4.2,d3:2,d:66.7},
+  {p:'UPI -> RCBP -> Shop',pu:72,bk:'6+',u:53,pp:73.6,d3:52,d:98.1},
+  {p:'UPI -> POPcard -> RuPay -> RCBP',pu:65,bk:'0',u:58,pp:89.2,d3:56,d:96.6},
+  {p:'UPI -> POPcard -> RuPay -> RCBP',pu:65,bk:'1',u:7,pp:10.8,d3:7,d:100},
+  {p:'UPI -> RuPay -> POPcard -> Shop',pu:61,bk:'0',u:45,pp:73.8,d3:40,d:88.9},
+  {p:'UPI -> RuPay -> POPcard -> Shop',pu:61,bk:'1',u:7,pp:11.5,d3:5,d:71.4},
+  {p:'UPI -> RuPay -> POPcard -> Shop',pu:61,bk:'2',u:1,pp:1.6,d3:1,d:100},
+  {p:'UPI -> RuPay -> POPcard -> Shop',pu:61,bk:'5',u:2,pp:3.3,d3:2,d:100},
+  {p:'UPI -> RuPay -> POPcard -> Shop',pu:61,bk:'6+',u:6,pp:9.8,d3:6,d:100},
+  {p:'Shop -> UPI -> RuPay',pu:57,bk:'0',u:57,pp:100,d3:35,d:61.4},
+  {p:'UPI -> Shop -> RuPay -> RCBP',pu:50,bk:'0',u:20,pp:40.0,d3:17,d:85.0},
+  {p:'UPI -> Shop -> RuPay -> RCBP',pu:50,bk:'1',u:12,pp:24.0,d3:11,d:91.7},
+  {p:'UPI -> Shop -> RuPay -> RCBP',pu:50,bk:'2',u:5,pp:10.0,d3:4,d:80.0},
+  {p:'UPI -> Shop -> RuPay -> RCBP',pu:50,bk:'3',u:3,pp:6.0,d3:3,d:100},
+  {p:'UPI -> Shop -> RuPay -> RCBP',pu:50,bk:'4',u:1,pp:2.0,d3:1,d:100},
+  {p:'UPI -> Shop -> RuPay -> RCBP',pu:50,bk:'5',u:1,pp:2.0,d3:1,d:100},
+  {p:'UPI -> Shop -> RuPay -> RCBP',pu:50,bk:'6+',u:8,pp:16.0,d3:8,d:100},
+];
+
+const paths=[...new Set(raw.map(r=>r.p))];
+let active='ALL';
+const pf=document.getElementById('pf');
+const allBtn=document.createElement('button');
+allBtn.className='pf-btn active';allBtn.textContent='All paths';allBtn.dataset.p='ALL';pf.appendChild(allBtn);
+paths.forEach(p=>{
+  const b=document.createElement('button');
+  b.className='pf-btn';b.textContent=p.replace(/ -> /g,'→');b.dataset.p=p;pf.appendChild(b);
+});
+pf.addEventListener('click',e=>{
+  if(!e.target.classList.contains('pf-btn'))return;
+  active=e.target.dataset.p;
+  pf.querySelectorAll('.pf-btn').forEach(b=>b.classList.toggle('active',b.dataset.p===active));
+  render();
+});
+
+const tb=document.getElementById('tb');
+function render(){
+  tb.innerHTML='';
+  const data=active==='ALL'?raw:raw.filter(r=>r.p===active);
+  data.forEach(r=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="white-space:nowrap">${rp(r.p)}</td>
+      <td>${bkHtml(r.bk)}</td>
+      <td style="text-align:right;font-weight:500">${r.u.toLocaleString()}</td>
+      <td style="text-align:right">${r.pp}%</td>
+      <td style="text-align:right">${r.d3.toLocaleString()}</td>
+      <td style="text-align:right">${rc(r.d)}</td>
+      <td>${bar(r.d)}</td>
+      <td style="font-size:10.5px;color:var(--color-text-secondary)">${interp(r.p,r.bk,r.d)}</td>`;
+    tb.appendChild(tr);
+  });
+}
+render();
+
+// Chart 1 — D30-60 by bucket for top 8 paths
+const top8=['UPI','UPI -> Shop','UPI -> RuPay','UPI -> POPcard','UPI -> RCBP','UPI -> RuPay -> Shop','UPI -> Shop -> RCBP','UPI -> RuPay -> RCBP'];
+const buckets=['0','1','2','3','4','5','6+'];
+const bkColors={'0':'#FCF0F0','1':'#FEF5E5','2':'#FEF9E3','3':'#EDF6E9','4':'#E3F3EE','5':'#E3EDF8','6+':'#9B8DD4'};
+const bkBorders={'0':'#E24B4A','1':'#EF9F27','2':'#D4AE00','3':'#1D9E75','4':'#0E7A5C','5':'#185FA5','6+':'#3C3489'};
+const datasets=buckets.map(bk=>({
+  label:'Bkt '+bk,
+  data:top8.map(p=>{const row=raw.find(r=>r.p===p&&r.bk===bk);return row?row.d:null;}),
+  backgroundColor:bkColors[bk],borderColor:bkBorders[bk],borderWidth:1.5,borderRadius:3,
+}));
+new Chart(document.getElementById('c1'),{
+  type:'bar',data:{labels:top8.map(p=>p.replace(/ -> /g,' → ').length>22?p.replace(/ -> /g,' → ').slice(0,22)+'…':p.replace(/ -> /g,' → ')),datasets},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{size:9.5},boxWidth:10,padding:8}}},
+    scales:{x:{ticks:{font:{size:9}}},y:{max:105,ticks:{callback:v=>v+'%',font:{size:10}},title:{display:true,text:'D30-60 %',font:{size:10}},grid:{color:'rgba(0,0,0,.04)'}}}
+  }
+});
+
+// Chart 2 — UPI-only distribution
+new Chart(document.getElementById('c2'),{
+  type:'bar',
+  data:{
+    labels:['1 txn','2 txns','3 txns','4 txns','5 txns','6+ txns'],
+    datasets:[
+      {label:'Users',data:[39889,14170,7426,4828,3713,33134],backgroundColor:['#E24B4A','#EF9F27','#D4AE00','#1D9E75','#0E7A5C','#3C3489'],borderRadius:3},
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{
+      label:c=>c.raw.toLocaleString()+' users',
+      afterLabel:ctx=>{const d=[0,4.1,7.6,11.4,11.8,41.0];return 'D30-60: '+d[ctx.dataIndex]+'%';}
+    }}},
+    scales:{x:{ticks:{font:{size:10}}},y:{ticks:{callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v,font:{size:10}},grid:{color:'rgba(0,0,0,.04)'}}}
+  }
+});
+</script>
+</body></html>
